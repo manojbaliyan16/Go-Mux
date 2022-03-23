@@ -17,7 +17,12 @@ blocks:
             - export GOPATH=~/go
             - 'export PATH=/home/semaphore/go/bin:$PATH'
             - checkout
-            - source env-sample
+            - source env-test
             - go get ./…
             - go test ./…
             - go build -v .
+      env_vars:
+        - name: GO111MODULE
+          value: 'ON'
+        - name: GOFLAGS
+          value: '-mod=vendor'

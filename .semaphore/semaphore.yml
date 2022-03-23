@@ -5,10 +5,11 @@ agent:
     type: e1-standard-2
     os_image: ubuntu2004
 blocks:
-  - name: Go
+  - name: GO
+    dependencies: []
     task:
       jobs:
-        - name: go test 2
+        - name: go test
           commands:
             - sem-service start postgres
             - sem-version go 1.16
@@ -19,12 +20,4 @@ blocks:
             - source env-test
             - go get ./…
             - go test ./…
-            - 'go build -v '
-      env_vars:
-        - name: FOO_1
-          value: BAR_1
-  - name: 'Block #2'
-    task:
-      jobs:
-        - name: 'Job #1'
-          commands: []
+            - go build -v .
